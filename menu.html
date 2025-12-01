@@ -1,0 +1,419 @@
+<html lang="ro">
+    <head>
+     <meta charset="UTF-8">
+    <title>Mr. Smoothie</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap" rel="stylesheet">
+    </head>
+    <body>
+    
+      <header class="navbar">
+        <a href="home.html">
+            <img src="logo_smoothie.png" class="logo">
+        </a>
+        <nav>
+            <a href="home.html">Acasă</a>
+            <a href="about.html">Despre</a>
+            <a href="menu.html">Meniu</a>
+            <a href="cart.html">Coș</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button id="modeToggle">🌙</button>
+      </header>
+
+    <section class="products" id="products">
+        <h1 class="heading">Produsele noastre</h1>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" onkeyup="filterSmoothies()" placeholder="Numele sortimentului...">
+            <button onclick="filterSmoothies()">Caută</button>
+        </div>
+
+        <div class="product-grid">
+            
+            <div class="box" onclick="flipCard(this, event)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="product_mango.png" alt="Smoothie Mango">
+                        <h3>Mango</h3>
+                        <div class="price">15 lei</div>
+                        <a href="" class="add_btn" onclick="event.stopPropagation(); addToCart('Mango', 15)">Adaugă în coș</a>
+                    </div>
+                    <div class="card-back">
+                        <div class="back-content">
+                            <img src="product_mango.png" alt="Smoothie Mango">
+                            <h4>Ingrediente Mango</h4>
+                            <ul>
+                                <li>Mango</li>
+                                <li>Iaurt grecesc</li>
+                                <li>Lapte de cocos</li>
+                                <li>Miere naturală</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="box" onclick="flipCard(this, event)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="product_capsuni.png" alt="Smoothie Căpșuni">
+                        <h3>Căpșuni</h3>
+                        <div class="price">15 lei</div>
+                        <a href="" class="add_btn" onclick="event.stopPropagation(); addToCart('Căpșuni', 15)">Adaugă în coș</a>
+                    </div>
+                    <div class="card-back">
+                         <div class="back-content">
+                            <img src="product_capsuni.png" alt="Smoothie Căpșuni">
+                            <h4>Ingrediente Căpșuni</h4>
+                            <ul>
+                                <li>Căpșuni proaspete</li>
+                                <li>Banane</li>
+                                <li>Lapte de migdale</li>
+                                <li>Semințe de Chia</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="box" onclick="flipCard(this, event)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="product_arahide.png" alt="Smoothie Unt de Arahide">
+                        <h3>Unt de Arahide</h3>
+                        <div class="price">15 lei</div>
+                        <a href="" class="add_btn" onclick="event.stopPropagation(); addToCart('Unt de Arahide', 15)">Adaugă în coș</a>
+                    </div>
+                    <div class="card-back">
+                         <div class="back-content">
+                            <img src="product_arahide.png" alt="Smoothie Unt de Arahide">
+                            <h4>Ingrediente Unt de Arahide</h4>
+                            <ul>
+                                <li>Unt de Arahide natural</li>
+                                <li>Banane</li>
+                                <li>Lapte integral</li>
+                                <li>Pudră de Proteină</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box" onclick="flipCard(this, event)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="product_cacao.png" alt="Smoothie Cacao">
+                        <h3>Cacao</h3>
+                        <div class="price">15 lei</div>
+                        <a href="" class="add_btn" onclick="event.stopPropagation(); addToCart('Cacao', 15)">Adaugă în coș</a>
+                    </div>
+                    <div class="card-back">
+                         <div class="back-content">
+                            <img src="product_cacao.png" alt="Smoothie Cacao">
+                            <h4>Ingrediente Cacao</h4>
+                            <ul>
+                                <li>Banane congelate</li>
+                                <li>Lapte de ovăz</li>
+                                <li>Pudră de Cacao organică</li>
+                                <li>Curmale</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="box" onclick="flipCard(this, event)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="product_spirulina.png" alt="Smoothie Spirulină">
+                        <h3>Spirulină</h3>
+                        <div class="price">15 lei</div>
+                        <a href="" class="add_btn" onclick="event.stopPropagation(); addToCart('Spirulină', 15)">Adaugă în coș</a>
+                    </div>
+                    <div class="card-back">
+                         <div class="back-content">
+                            <img src="product_spirulina.png" alt="Smoothie Spirulină">
+                            <h4>Ingrediente Spirulină</h4>
+                            <ul>
+                                <li>Spirulină pură</li>
+                                <li>Spanac proaspăt</li>
+                                <li>Kiwi</li>
+                                <li>Apă de Cocos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="box" onclick="flipCard(this, event)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="product_kiwi.png" alt="Smoothie Kiwi">
+                        <h3>Kiwi</h3>
+                        <div class="price">15 lei</div>
+                        <a href="" class="add_btn" onclick="event.stopPropagation(); addToCart('Kiwi', 15)">Adaugă în coș</a>
+                    </div>
+                    <div class="card-back">
+                         <div class="back-content">
+                            <img src="product_kiwi.png" alt="Smoothie Kiwi">
+                            <h4>Ingrediente Kiwi</h4>
+                            <ul>
+                                <li>Kiwi</li>
+                                <li>Ananas</li>
+                                <li>Iaurt grecesc</li>
+                                <li>Semințe de Lămâie</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <div class="nutrition-cta">
+            <a href="nutrition.html" class="cta-button">
+                Informații Nutriționale
+            </a>
+        </div>
+    </section>
+
+    <button id="upBtn" class="scroll-btn up-btn" aria-label="Scroll to Top">
+        &uarr; <!-- Săgeată Unicode în sus -->
+    </button>
+    <button id="downBtn" class="scroll-btn down-btn" aria-label="Scroll to Bottom">
+        &darr; <!-- Săgeată Unicode în jos -->
+    </button>
+
+    <div id="overlay" class="overlay"></div>
+
+       <script>
+        // ... (Scriptul existent pentru Dark Mode și evidențierea linkului activ rămâne aici) ...
+        const modeToggle = document.getElementById('modeToggle');
+
+        // verificăm dacă există modul salvat
+        if(localStorage.getItem('mode')) {
+            document.body.className = localStorage.getItem('mode');
+            modeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+
+        modeToggle.addEventListener('click', () => {
+            if(document.body.classList.contains('dark-mode')) {
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+                localStorage.setItem('mode', 'light-mode');
+                modeToggle.textContent = '🌙';
+            } else {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('mode', 'dark-mode');
+                modeToggle.textContent = '☀️';
+            }
+        });
+    </script>
+
+    <script>
+// Cod pentru evidențierea linkului activ
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('header nav a');
+    const currentPath = window.location.pathname.split('/').pop(); // Extrage numele fișierului
+
+    navLinks.forEach(link => {
+        // Obține numele fișierului din href (ex: 'home.html')
+        const linkPath = link.getAttribute('href'); 
+        
+        // Verificăm dacă linkPath se potrivește cu currentPath, adăugăm clasa 'active'.
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        } 
+    });
+});
+    </script>
+    
+    <script>
+        function flipCard(card, event) {
+            // Ignoră click-ul pe butonul Adaugă în coș (oprirea se face și prin onclick="event.stopPropagation()")
+            if (event.target.closest('.add_btn') || event.target.closest('.close-btn')) {
+                return; 
+            }
+
+            const overlay = document.getElementById('overlay');
+
+            // 1. Dacă se dă click pe un card deja mărit (pentru a-l întoarce la față)
+            if (card.classList.contains('is-expanded')) {
+                // Rotim cardul înapoi
+                card.classList.remove('is-flipped');
+                
+                // Închidem expansiunea după animația de flip
+                setTimeout(() => {
+                    closeCard(card);
+                }, 500); // 500ms = durată tranziție CSS
+                return;
+            }
+            
+            // 2. Expansiunea și Flipping-ul (când se dă click prima dată)
+            
+            // Dăm clasa de mărire cardului
+            card.classList.add('is-expanded');
+            
+            // Rotim cardul puțin mai târziu, ca să se vadă întâi mărirea
+            setTimeout(() => {
+                card.classList.add('is-flipped');
+            }, 10);
+            
+            // Activăm overlay-ul
+            overlay.classList.add('active');
+
+            // NOU: Adăugăm o clasă pe body
+            document.body.classList.add('modal-open'); 
+            
+            // Oprim scroll-ul pe body
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCard(card) {
+            const overlay = document.getElementById('overlay');
+            
+            // 1. Întoarcem cardul la față (dacă nu e deja)
+            card.classList.remove('is-flipped');
+
+            // 2. Scoatem overlay-ul și scroll-ul
+            overlay.classList.remove('active');
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+            
+            // 3. Scoatem clasa de mărire după ce animația de flip s-a terminat
+            setTimeout(() => {
+                card.classList.remove('is-expanded');
+            }, 500); // 500ms = durată tranziție CSS
+        }
+
+        // Închide cardul când se apasă pe overlay
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('overlay');
+            if (overlay) {
+                overlay.addEventListener('click', () => {
+                    const activeCard = document.querySelector('.box.is-expanded');
+                    if (activeCard) {
+                        closeCard(activeCard);
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        function filterSmoothies() {
+            // Preluăm textul de căutare și îl convertim la minuscule
+            const filter = document.getElementById('searchInput').value.toUpperCase();
+            
+            // Preluăm toate cardurile de smoothie
+            const grid = document.querySelector('.product-grid');
+            const boxes = grid.querySelectorAll('.box');
+
+            // Parcurgem fiecare card
+            boxes.forEach(box => {
+                // Preluăm numele smoothie-ului (din card-inner -> card-front -> h3)
+                const nameElement = box.querySelector('.card-front h3');
+                
+                if (nameElement) {
+                    const name = nameElement.textContent.toUpperCase();
+                    
+                    // Verificăm dacă numele include textul căutat
+                    if (name.indexOf(filter) > -1) {
+                        box.classList.remove('hidden');
+                    } else {
+                        box.classList.add('hidden');
+                    }
+                }
+            });
+        }
+    </script>
+
+    <script>
+            const upBtn = document.getElementById('upBtn');
+            const downBtn = document.getElementById('downBtn');
+
+            const toggleScrollButtons = () => {
+                const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+                const documentHeight = document.documentElement.scrollHeight;
+                const windowHeight = window.innerHeight;
+
+                // 1. Logic for UP button (shows after scrolling down 200px)
+                if (upBtn) { 
+                    if (scrollPosition > 200) {
+                        upBtn.classList.add('show');
+                    } else {
+                        upBtn.classList.remove('show');
+                    }
+                }
+
+                // 2. Logic for DOWN button (shows unless we are near the very bottom AND the page is scrollable)
+                if (downBtn) {
+                    // Check if the page is actually scrollable (document height > window height)
+                    const isScrollable = documentHeight > windowHeight + 10; // +10 for buffer
+                    
+                    // Show if scrollable AND not at the very bottom (with 50px tolerance)
+                    if (isScrollable && (scrollPosition + windowHeight < documentHeight - 50)) {
+                        downBtn.classList.add('show');
+                    } else {
+                        downBtn.classList.remove('show');
+                    }
+                }
+            };
+
+            // Apelul imediat, mult mai fiabil decât window.load, pentru a seta starea inițială
+            toggleScrollButtons();
+
+            // Evenimentul de scroll
+            window.addEventListener('scroll', toggleScrollButtons);
+            // Re-verifică la redimensionare (pentru a vedea dacă pagina devine/nu mai este scrollabilă)
+            window.addEventListener('resize', toggleScrollButtons); 
+
+            // Funcțiile de scroll efective
+            if (upBtn) {
+                upBtn.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            if (downBtn) {
+                downBtn.addEventListener('click', () => {
+                    // Derulează la sfârșitul documentului
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        </script>
+
+        <script>
+        function addToCart(name, price) {
+            // Preluăm coșul existent din localStorage sau inițializăm un array gol
+            let cart = JSON.parse(localStorage.getItem('smoothieCart')) || [];
+            
+            // Verificăm dacă produsul există deja în coș
+            const existingItem = cart.find(item => item.name === name);
+
+            if (existingItem) {
+                // Dacă există, creștem doar cantitatea
+                existingItem.quantity += 1;
+            } else {
+                // Dacă nu există, adăugăm un obiect nou
+                cart.push({ name: name, price: price, quantity: 1 });
+            }
+
+            // Salvăm noul coș în localStorage
+            localStorage.setItem('smoothieCart', JSON.stringify(cart));
+            
+            // Notificăm utilizatorul (opțional)
+            alert(`${name} a fost adăugat în coș!`);
+        }
+    </script>
+    </body>
+</html>

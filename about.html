@@ -1,0 +1,333 @@
+<html lang="ro">
+    <head>
+     <meta charset="UTF-8">
+    <title>Mr. Smoothie</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap" rel="stylesheet">
+    <style>
+        /* Stiluri specifice pentru secțiunea video și font-ul Bungee Outline */
+        .bungee-outline-font {
+            font-family: 'Bungee Outline', cursive;
+            font-size: 3rem; /* Ajustat pentru impact */
+            letter-spacing: 5px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            /* Asigură că font-ul este lizibil în modul dark mode */
+            transition: color 0.3s ease;
+        }
+
+        .video-hero {
+            position: relative;
+            width: 100%;
+            height: 100%; /* Înălțime fixă pentru impact */
+            overflow: hidden;
+            background-color: #A03822; /* Culoare de fundal în caz de eroare video */
+            margin-top: 0px; /* Offset pentru header */
+            padding-top: 100px;
+        }
+
+        .video-container, #storyVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asigură că video-ul acoperă întregul container fără a se deforma */
+        }
+        
+        /* Stilul Overlay-ului peste video */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3); /* Umbră semi-transparentă */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            pointer-events: none; /* Permite click-ul să treacă la video, dacă nu era muted */
+        }
+
+        /* Responsive adjustments for the title and section height */
+        @media (max-width: 768px) {
+            .bungee-outline-font {
+                font-size: 2rem;
+                letter-spacing: 3px;
+            }
+            .video-hero {
+                height: 40vh; /* Mai scurt pe mobil */
+            }
+        }
+    </style>
+    </head>
+    <body>
+    
+      <header class="navbar">
+        <a href="home.html">
+            <img src="logo_smoothie.png" class="logo">
+        </a>
+        <nav>
+            <a href="home.html">Acasă</a>
+            <a href="about.html">Despre</a>
+            <a href="menu.html">Meniu</a>
+            <a href="cart.html">Coș</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button id="modeToggle">🌙</button>
+      </header>
+
+       <script>
+        const modeToggle = document.getElementById('modeToggle');
+
+        // verificăm dacă există modul salvat
+        if(localStorage.getItem('mode')) {
+            document.body.className = localStorage.getItem('mode');
+            modeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+
+        modeToggle.addEventListener('click', () => {
+            if(document.body.classList.contains('dark-mode')) {
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+                localStorage.setItem('mode', 'light-mode');
+                modeToggle.textContent = '🌙';
+            } else {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('mode', 'dark-mode');
+                modeToggle.textContent = '☀️';
+            }
+        });
+    </script>
+
+      <section class="video-hero">
+        <div class="video-container">
+            <!-- URL-ul de mai jos este un PLACEHOLDER. Vă rugăm să îl înlocuiți cu calea către fișierul dvs. MP4. -->
+            <video id="storyVideo" 
+                   autoplay 
+                   loop 
+                   muted 
+                   playsinline 
+                   poster="https://placehold.co/1200x675/A03822/FFFFFF?text=Mr.+Smoothie+Video+Loading"
+                   >
+                <source src="video.mp4" type="video/mp4">
+                <!-- Fallback pentru browserele care nu suportă elementul video -->
+                Videoclipul nu poate fi redat. Vă rugăm să actualizați browserul.
+            </video>
+            <div class="video-overlay">
+                <p class="bungee-outline-font">Descoperă povestea Mr. Smoothie</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="about-section">
+            <div class="about-container">
+                <h1 class="about-title">Descoperă Povestea Mr. Smoothie</h1>
+                
+                <!-- Bloc 1: Viziunea și Misiunea -->
+                <div class="story-block">
+                    <div class="story-text">
+                        <h2>Viziunea și Începuturile</h2>
+                        <p>
+                            Mr. Smoothie s-a născut din dorința simplă de a aduce gustul autentic și sănătos al naturii direct în paharul dumneavoastră. Totul a început într-o bucătărie mică, unde am experimentat cu fructe locale, căutând combinația perfectă care să fie nu doar delicioasă, ci și hrănitoare. Nu credem în adaosuri artificiale, zaharuri rafinate sau concentrate. Credem doar în fructe proaspete, blenduite cu pasiune.
+                        </p>
+                        <p>
+                            Misiunea noastră este să facem alegerile sănătoase accesibile și irezistibile pentru oricine.
+                        </p>
+                    </div>
+                  <div class="story-image-wrapper">
+                        <div class="carousel-container">
+                            <div class="carousel-track">
+                                <img src="ingrediente_fructedepadure.png" alt="Ingrediente proaspete" class="story-image carousel-slide">
+                                <img src="ingrediente_mango.png" alt="Smoothie finit servit" class="story-image carousel-slide">
+                                <img src="ingrediente_kiwi.png" alt="Fructe exotice și superalimente" class="story-image carousel-slide">
+                                <img src="ingrediente_banane.png" alt="Smoothie finit servit" class="story-image carousel-slide">
+                                <img src="ingrediente_capsuni.png" alt="Fructe exotice și superalimente" class="story-image carousel-slide">
+                            </div>
+                            <!-- Butoane de Navigare -->
+                            <button class="prev-button" onclick="changeSlide(-1)">&#10094;</button>
+                            <button class="next-button" onclick="changeSlide(1)">&#10095;</button>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <!-- Bloc 2: Angajamentul Față de Calitate -->
+                <div class="story-block">
+                    <div class="story-image-wrapper">
+                        <!-- Placeholder pentru o imagine cu cineva blenduind un smoothie -->
+                        <img src="blender.png" alt="Smoothie în blender" class="story-image">
+                    </div>
+                    <div class="story-text">
+                        <h2>Calitatea Este Promisiunea Noastră</h2>
+                        <p>
+                            Fiecare ingredient pe care îl folosim este ales cu grijă. De la bananele coapte perfect, la căpșunile proaspăte și îndulcitori naturali, ne asigurăm că fiecare înghițitură din smoothie-ul dumneavoastră este o explozie de vitamine și savoare.
+                        </p>
+                        <p>
+                            Punem accent pe sustenabilitate, deoarece credem că este foarte importantă grija față de clienții noștri.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="story-block">
+                <div class="story-text">
+                    <h2>Vedeta Nutrițională a Paharului Tău</h2>
+                    <p>De ce ar trebui să iubești budinca de chia?</p>
+                    <ul>
+                        <li>Fibre: Asigură o digestie sănătoasă și o senzație prelungită de sațietate.</li>
+                        <li>Omega-3: O sursă excelentă de acizi grași pentru sănătatea creierului și a inimii.</li>
+                        <li>Proteine & Minerale: Oferă Calciu, Magneziu și Fosfor.</li>
+                        <li>Hidratare: Capacitatea lor de a reține lichide ajută la menținerea unui nivel optim de hidratare.</li>
+                    </ul>
+                </div>
+                <div class="story-image-wrapper">
+                    <!-- O singură imagine relevantă pentru acest bloc -->
+                    <img src="ingrediente_budincadechia.png" alt="Budincă de Chia cu fructe" class="story-image">
+                </div>
+            </div>
+
+                <!-- Secțiune CTA (Call to Action) -->
+                <div class="cta-block">
+                    <h2>Gata să te bucuri de cea mai bună gustare naturală?</h2>
+                    <a href="menu.html" class="cta-button">Explorează Meniul Nostru</a>
+                </div>
+
+            </div>
+        </section>
+
+   <button id="upBtn" class="scroll-btn up-btn" aria-label="Scroll to Top">
+        &uarr; <!-- Săgeată Unicode în sus -->
+    </button>
+    <button id="downBtn" class="scroll-btn down-btn" aria-label="Scroll to Bottom">
+        &darr; <!-- Săgeată Unicode în jos -->
+    </button>
+
+        <script>
+                     let slideIndex = 0; // Începe cu prima imagine
+
+            function showSlide(n) {
+                const slides = document.querySelectorAll('.carousel-slide');
+                if (slides.length === 0) return;
+
+                let newIndex = n;
+                // Ajustare index pentru a permite looping-ul
+                if (newIndex >= slides.length) {
+                    newIndex = 0;
+                }
+                if (newIndex < 0) {
+                    newIndex = slides.length - 1;
+                } 
+                
+                slideIndex = newIndex;
+
+                // Aplică transformarea la track
+                const track = document.querySelector('.carousel-track');
+                // Obținem lățimea curentă a primului slide (care este 100% din container)
+                const slideWidth = slides[0].clientWidth; 
+                
+                if (track && slideWidth > 0) {
+                    track.style.transform = `translateX(-${slideIndex * slideWidth}px)`;
+                }
+            }
+            // Funcție globală de navigare
+            window.changeSlide = function(n) {
+                showSlide(slideIndex + n);
+            }
+
+            // Inițializarea caruselului și re-ajustarea la redimensionare
+            document.addEventListener('DOMContentLoaded', () => {
+                showSlide(0);
+                window.addEventListener('resize', () => showSlide(slideIndex));
+            });
+        </script>
+
+        <script>
+            const upBtn = document.getElementById('upBtn');
+            const downBtn = document.getElementById('downBtn');
+
+            const toggleScrollButtons = () => {
+                const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+                const documentHeight = document.documentElement.scrollHeight;
+                const windowHeight = window.innerHeight;
+
+                // 1. Logic for UP button (shows after scrolling down 200px)
+                if (upBtn) { 
+                    if (scrollPosition > 200) {
+                        upBtn.classList.add('show');
+                    } else {
+                        upBtn.classList.remove('show');
+                    }
+                }
+
+                // 2. Logic for DOWN button (shows unless we are near the very bottom AND the page is scrollable)
+                if (downBtn) {
+                    // Check if the page is actually scrollable (document height > window height)
+                    const isScrollable = documentHeight > windowHeight + 10; // +10 for buffer
+                    
+                    // Show if scrollable AND not at the very bottom (with 50px tolerance)
+                    if (isScrollable && (scrollPosition + windowHeight < documentHeight - 50)) {
+                        downBtn.classList.add('show');
+                    } else {
+                        downBtn.classList.remove('show');
+                    }
+                }
+            };
+
+            // Apelul imediat, mult mai fiabil decât window.load, pentru a seta starea inițială
+            toggleScrollButtons();
+
+            // Evenimentul de scroll
+            window.addEventListener('scroll', toggleScrollButtons);
+            // Re-verifică la redimensionare (pentru a vedea dacă pagina devine/nu mai este scrollabilă)
+            window.addEventListener('resize', toggleScrollButtons); 
+
+            // Funcțiile de scroll efective
+            if (upBtn) {
+                upBtn.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            if (downBtn) {
+                downBtn.addEventListener('click', () => {
+                    // Derulează la sfârșitul documentului
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        </script>
+
+        <script>
+// Cod pentru evidențierea linkului activ
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('header nav a');
+    const currentPath = window.location.pathname.split('/').pop(); // Extrage numele fișierului
+
+    navLinks.forEach(link => {
+        // Obține numele fișierului din href (ex: 'home.html')
+        const linkPath = link.getAttribute('href'); 
+        
+        // Verificăm dacă linkPath este gol ('') - cazul linkului Coș, pe care l-ai lăsat gol. 
+        // Dacă este 'home.html' și currentPath este gol (index.html sau home.html dacă este setat ca pagină principală), 
+        // sau dacă linkPath se potrivește cu currentPath, adăugăm clasa 'active'.
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        } else if (currentPath === "" && linkPath === "home.html") {
+            // Caz special: dacă pagina curentă este rădăcina, activează linkul 'Acasă'
+            link.classList.add('active');
+        }
+    });
+});
+    </script>
+
+    </body>
+</html>

@@ -1,0 +1,1831 @@
+.bungee-outline-regular { 
+  font-family: "Bungee Outline", sans-serif; 
+  font-weight: 600; 
+  font-style: normal; 
+} 
+ 
+:root {
+    /* Light Mode Defaults */
+    --primary-color: #a03822; /* Roșu închis - pentru accente, hover, titluri contact */
+    --accent-color: #a03822; /* Galben/Portocaliu - pentru butoane/elemente vizibile */
+    --main-bg: rgb(255, 240, 206); /* Fundal principal crem */
+    --secondary-bg: rgb(255, 240, 206); /* Fundal secundar (ex: contact box, formular, NAVBAR) */
+    --text-color: #444; /* Text principal întunecat */
+    --light-text: rgb(255, 240, 206); /* Text deschis (folosit în hero) */
+
+    /* Variabila nav-bg nu mai este necesară ca rgba, dar o păstrăm definită cu o culoare solidă */
+    --nav-bg: var(--main-bg); 
+    
+}
+
+body.dark-mode {
+    --primary-color: rgb(255, 240, 206); /* Roz/Roșu deschis pentru accente */
+    --accent-color: rgb(255, 240, 206); /* Galben */
+    --main-bg: black; /* Fundal principal întunecat */
+    --secondary-bg: black; /* Fundal secundar (ex: contact box, formular, NAVBAR) */
+    --text-color: #fff; /* Text principal deschis */
+    --light-text: black; /* Text întunecat (folosit în hero peste fundalul deschis) */
+    
+    --nav-bg: var(--secondary-bg); /* Setează nav-bg la culoarea secundară solidă */
+   
+}
+
+body { 
+    margin: 0; 
+    font-family: Arial, sans-serif; 
+    background: rgb(255, 240, 206); 
+    overflow-x: hidden; 
+
+} 
+
+body.light-mode {
+    background-color: rgb(255, 240, 206); /* fundal deschis */
+    color: #222; /* text întunecat */
+}
+
+body.dark-mode {
+    background-color: var(--main-bg); /* fundal închis */
+    color: #f0f0f0; /* text deschis */
+}
+
+body.light-mode #smoothieName,
+body.light-mode #smoothieDescription {
+    color: #f0f0f0; /* text deschis în dark mode */
+}
+
+body.dark-mode #smoothieName,
+body.dark-mode #smoothieDescription {
+    color: #222; /* text întunecat în light mode */
+
+}
+
+/* Butonul */
+#modeToggle {
+    margin-left: 0px;    /* distanță față de nav */
+    margin-right: 100px;
+    background: none;
+    border: 2px solid #a03822;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s;
+    z-index: 2;
+}
+
+
+body.dark-mode #modeToggle {
+    border-color: #f0f0f0;
+    color: #f0f0f0;
+}
+  
+header { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 20px 20px; 
+    position: fixed; 
+    z-index: 2; 
+    width: 100%;
+    height: 10%;
+    background: var(--nav-bg);
+  } 
+  
+nav a { 
+    margin: 0 70px; 
+    text-decoration: none; 
+    color: #444; 
+    font-weight: 500; 
+} 
+  
+  nav a:hover { 
+    color: #a03822; 
+  } 
+
+  nav a.active {
+    color: var(--primary-color); 
+    font-weight: 700; /* Face textul mai gros */
+    border-bottom: 3px solid var(--primary-color); /* Subliniere groasă */
+    padding-bottom: 5px; /* Spațiu între text și subliniere */
+}
+  
+  .logo { 
+    height: 130px; 
+  } 
+  
+  .hero { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 50px; 
+    min-height: 80vh; 
+    position: relative; 
+    overflow: hidden; 
+  } 
+  
+  /* partea stângă (smoothie-ul) */ 
+  .left { 
+    flex:1;
+    display: block; 
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+  } 
+  
+  .left .smoothie-container .smoothieImg { 
+    width: 50%; 
+    height: auto; 
+    cursor: pointer; 
+    transition: transform 0.3s ease; 
+    position: fixed;
+    right: -8%;
+    top: 25%;
+    /*position: fixed; 
+    left: -40%; 
+    top: -2%;*/ 
+    z-index: 2; 
+  } 
+  
+  .left .smoothie-container .BgImg{ 
+    position: fixed; /* Imaginea rămâne fixă pe ecran */ 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* Imaginea se scalează fără să se distorsioneze */ 
+    z-index: -2; /* Pune imaginea în spate */ 
+    
+
+  } 
+  
+  .left img:hover { 
+    transform: scale(1.2); 
+  } 
+  
+
+  
+.right-container {
+    display: flex;
+    flex-direction: column; /* nume deasupra, descriere dedesubt */
+    align-items: flex-start; /* aliniere la stânga */
+    position: relative;
+    left: 20px;
+    top: 200px; /* ajustează după cum vrei */
+    z-index: 2;
+}
+
+.right {
+    font-family: "Bungee Outline", sans-serif;
+    font-weight: bold;
+    margin-top: -130px;
+    font-size: 400%;
+    color: rgb(255, 240, 206);
+    white-space: nowrap;
+}
+
+.right-down {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5vw;
+    color: rgb(255, 240, 206);
+    margin-top: 10px; /* spațiu între nume și descriere */
+    max-width: 400px;
+}
+
+
+  .smoothie-container { 
+    position: relative; 
+  } 
+  
+  @-webkit-keyframes scale-down-bottom { 
+    0% { -webkit-transform: scale(1); 
+      transform: scale(1); 
+      -webkit-transform-origin: 50% 100%; 
+      transform-origin: 50% 100%; } 
+    100% { -webkit-transform: scale(0.5); 
+      transform: scale(0.5); 
+      -webkit-transform-origin: 50% 100%; 
+      transform-origin: 50% 100%; } } 
+        
+@keyframes scale-down-bottom { 
+  0% { 
+    -webkit-transform: scale(1); 
+    transform: scale(1); 
+    -webkit-transform-origin: 50% 100%; 
+    transform-origin: 50% 100%; } 
+  100% { 
+    -webkit-transform: scale(0.5); 
+    transform: scale(0.5); 
+    -webkit-transform-origin: 50% 100%; 
+    transform-origin: 50% 100%; } }
+
+@keyframes scale-up {
+    0% {
+        transform: scale(0.5); /* mic la început */
+    }
+    100% {
+        transform: scale(1);   /* dimensiunea normală */
+    }
+}
+
+#smoothieName {
+    display: inline-block; /* ca transform să funcționeze corect */
+    transform-origin: left center; /* se mărește din stânga */
+}
+
+
+
+/* CONTACT */
+
+
+
+.contact{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background: var(--main-bg);    
+}
+
+.contact.light-mode {
+    background-color: rgb(255, 240, 206); /* fundal deschis */
+    color: #222; /* text întunecat */
+}
+
+.contact.dark-mode {
+    background-color: #222; /* fundal închis */
+    color: #f0f0f0; /* text deschis */
+}
+
+.contact .linie{
+    width: 30%;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 5%;
+    margin-left: 10%;
+    margin-top: 220px;
+}
+
+.contact .linie .contact_box{
+    position: relative;
+    padding: 0px 0;
+    display: flex;
+    background: #fff;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    justify-content: left;
+
+}
+
+.contact .linie .contact_box .icon{
+    min-width: 60px;
+    height: 60px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+}
+
+.contact .linie .contact_box .text{
+    display: flex;
+    margin-left: 20px;
+    font-size: 16px;
+    flex-direction: column;
+}
+
+.contact .linie .contact_box .text h3{
+    color: #a03822;
+    font-weight: 500;
+    margin-bottom: 10%;
+}
+
+.contact .linie .contact_box .text p{
+    color: grey;
+    margin-bottom: 20%;
+    margin-top: -10%;
+}
+
+
+.contact .socials{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+}
+
+.socials .social{
+     width: 40px; /* Dimensiune fixă, ușor mai mare */
+    height: 40px;
+    object-fit: contain; /* Se asigură că imaginea nu este tăiată */
+    transition: transform 0.3s ease-in;
+}
+
+.socials a:hover .social {
+    transform: translateY(-5px) scale(0.7); /* Imaginea se ridică și se mărește */
+}
+
+ .contactForm{
+    width: 40%;
+    height: 50%;
+    padding: 40px;
+    background: #fff;
+    margin-bottom: 5%;
+    margin-top: 220px;
+ }
+
+ .contactForm h2{
+    font-size: 30px;
+    color: #a03822;
+    font-size: 50;
+ }
+
+ .contactForm .inputbox{
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+ }
+
+ .contactForm .inputbox input, .contactForm .inputbox textarea{
+    width: 100%;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid rgb(255, 240, 206);
+    outline: none;
+    resize: none;
+ }
+
+ .contactForm .inputbox span{
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    pointer-events: none;
+    transition: 0.5%;
+    color:gray;
+ }
+
+ .contactForm .inputbox input:focus ~ span,
+ .contactForm .inputbox input:valid ~ span,
+ .contactForm .inputbox textarea:focus ~ span,
+ .contactForm .inputbox textarea:valid ~ span{
+    color: grey;
+    font-size: 12px;
+    transform: translateY(-20px);
+ }
+
+ .contactForm .inputbox input[type="submit"]{
+    width: 100px;
+    background: #a03822;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
+ }
+
+
+ /* DESPRE */
+
+
+ .about-section {
+    padding: 50px 5% 50px 5%; /* Nu mai avem nevoie de 120px padding sus */
+    background: var(--main-bg);
+}
+
+.about-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    margin-top: 120px;
+}
+
+.about-title {
+    margin-top: -10px;
+    text-align: center;
+    font-size: 3em;
+    color: var(--primary-color);
+    margin-bottom: 60px;
+    font-family: "Bungee Outline", sans-serif;
+}
+
+/* Blocul principal de poveste (Text + Imagine) */
+.story-block {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 80px;
+    background: var(--primary-bg);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+    transition: background 0.5s;
+}
+
+/* Inversarea ordinii (Textul e pe dreapta) */
+.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+.story-text {
+    flex: 1;
+    line-height: 1.8;
+}
+
+.story-text h2 {
+    color: var(--accent-color);
+    font-size: 2em;
+    margin-top: 0;
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+.story-text p {
+    color: var(--text-color);
+    font-size: 1.1em;
+}
+
+.story-image-wrapper {
+    flex: 1;
+    max-width: 400px;
+    min-width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.story-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asigură că imaginea umple întregul wrapper */
+}
+
+.story-image-wrapper:hover {
+    transform: scale(1.02);
+}
+
+.carousel-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Esențial pentru a ascunde slide-urile nevăzute */
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    height: 100%;
+    /* Adaugă animație de glisare */
+    transition: transform 0.5s ease-in-out; 
+}
+
+.carousel-slide {
+    min-width: 100%; /* Fiecare slide ocupă 100% din lățimea containerului */
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0; /* Previne micșorarea slide-urilor */
+}
+
+/* Stiluri pentru butoanele de navigare (Săgeți) */
+.prev-button, .next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6); /* Fundal semi-transparent */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 5; 
+    font-size: 20px;
+    line-height: 1;
+    border-radius: 50%; /* Butoane rotunde */
+    transition: background 0.3s, transform 0.3s;
+    opacity: 0.8;
+}
+
+.prev-button:hover, .next-button:hover {
+    background: var(--primary-color);
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1); 
+}
+
+.prev-button {
+    left: 10px;
+}
+
+.next-button {
+    right: 10px;
+}
+
+/* Call to Action (CTA) */
+.cta-block {
+    text-align: center;
+    padding: 40px;
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border-radius: 15px;
+    margin-top: 60px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cta-block h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    background-color: var(--main-color);
+
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--main-color);
+    color: var(--pirmary-color);
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-button:hover {
+    background-color:var(--main-color);
+    transform: translateY(-2px);
+}
+
+.scroll-btn {
+    position: fixed;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: var(--light-text);
+    font-size: 24px;
+    line-height: 50px; /* Centrare verticală text/icon */
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 15; /* Peste tot, inclusiv navbar */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.scroll-btn.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.up-btn {
+    bottom: 80px; /* Lasă loc pentru butonul de jos */
+}
+
+.down-btn {
+    bottom: 20px;
+}
+
+/* ... restul codului CSS ... */
+
+
+
+
+
+
+/* MENU      */
+.products {
+    padding-top: 150px; /* Offset pentru navbar */
+    padding-bottom: 150px;
+    background: var(--main-bg);
+}
+
+.heading {
+    text-align: center;
+    padding: 2rem 0;
+    padding-bottom: 3rem;
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    font-family: "Bungee Outline", sans-serif;
+    margin-top: 30px;
+}
+
+
+
+/* Containerul principal - GRILA */
+.product-grid {
+    display: grid;
+    /* 3 coloane egale pe desktop, cu lățime minimă a cardului de 250px */
+    grid-template-columns: 1fr 1fr 1fr;    
+    gap: 80px; /* Spațiu între cutii */
+    max-width: 1100px; /* Lățime maximă redusă */
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Cardul de produs (dreptunghiul) */
+.product-grid .box {
+    /*background: var(--secondary-bg);*/
+    background-color: rgba(160, 56, 34, 0.1);
+    border-radius: 15px;
+    text-align: center;
+    padding: 20px; /* Reducem padding-ul */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 40px;
+
+    position: relative; 
+    transform-style: preserve-3d; /* Permite copiilor să participe la spațiul 3D */
+    perspective: 1000px; /* Setează perspectiva 3D */
+    cursor: pointer; 
+    z-index: 1; /* Pentru ordinea de afișare */
+    /* NOU: Adăugăm tranziția pentru mărire */
+    transition: none;
+
+    /* FIX 1: Setăm o înălțime minimă fixă pentru a garanta spațiul în grid */
+    min-height: 400px; /* Valoare mai mare care să acopere conținutul */
+    
+    /* FIX 2: Adăugăm padding/margin suplimentar pentru a separa elementele în mod vizibil */
+    margin-bottom: 0px;
+
+    border: 2px solid var(--primary-color);
+}
+
+.overlay.active + .products .box:not(.is-expanded) {
+    pointer-events: none;
+}
+
+/* Dezactivăm interacțiunile pe toate cardurile normale când un modal e deschis */
+body.modal-open .product-grid .box:not(.is-expanded) {
+    pointer-events: none;
+    /* Dezactivăm complet orice transformare fină sau tranziție */
+    transform: none !important;
+    transition: none !important;
+}
+
+.product-grid .box:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.product-grid .box img {
+    height: 150px; /* NOU: Reducem înălțimea imaginii */
+    width: auto;
+    max-width: 100%;
+    margin-bottom: 15px;
+    object-fit: contain; /* NOU: Rezolvă distorsionarea */
+}
+
+.product-grid .box h3 {
+    font-size: 1.8rem; /* NOU: Reducem mărimea titlului */
+    color: var(--primary-color);
+    margin: 10px 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.product-grid .box .price {
+    font-size: 1.3rem; /* NOU: Reducem mărimea prețului */
+    color: var(--text-color);
+    font-weight: bold;
+    margin: 5px 0 20px 0;
+    font-family:Arial, Helvetica, sans-serif;
+    opacity: 0.7;
+}
+
+.product-grid .box:hover:not(.is-expanded) {
+    /* Aplică hover doar dacă NU este în modul expandat */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Butonul Adaugă în coș */
+.add_btn {
+    margin-top: auto; 
+    display: inline-block;
+    padding: .6rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    border: 2px solid var(--light-text);
+    color: var(--light-text);
+    cursor: pointer;
+    background: var(--primary-color);
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+}
+
+.add_btn:hover {
+    background: none;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);  
+}
+
+
+/* Containerul care se rotește */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.5s; /* Durata animației de flip */
+    transform-style: preserve-3d;
+
+    /* FIX DEFINITIV 3: Îi spunem browserului să nu deseneze spatele elementului când se mișcă */
+    -webkit-backface-visibility: hidden; 
+    backface-visibility: hidden;
+
+    /* FIX DEFINITIV 4: Asigură că transformările folosesc GPU-ul */
+    -webkit-transform: translateZ(0); 
+    transform: translateZ(0);
+}
+
+/* Ambele fețe ale cardului */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Ascunde spatele feței când nu este rotită */
+    border-radius: 15px;
+    /*border-radius: 15px;
+    background-color: rgba(160, 56, 34, 0.05);*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+    /* Păstrează box-shadow-ul pe fețe 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); */
+}
+
+/* 2. Rotirea cardului la click */
+.box.is-flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Stiluri pentru spatele cardului */
+.card-back {
+    transform: rotateY(180deg); /* O rotim inițial cu 180 grade */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.card-back .back-content {
+    /* Centrare conținut */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.card-back img {
+    height: 100px; /* Imagine mai mică pe spate */
+    margin-bottom: 15px;
+}
+
+.card-back h4 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.card-back ul {
+    list-style: none; /* Scoatem bulinele default */
+    text-align: center;
+    padding-left: 0;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin: 0;
+}
+.card-back ul li {
+    margin-bottom: 5px;
+    padding-left: 0;
+}
+
+/*.card-back .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--primary-color);
+    color: var(--light-text);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    z-index: 110; 
+}*/
+
+/* 3. Expansiunea cardului (Modal-like) */
+.box.is-expanded {
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    /* Mărire și centrare */
+    transform: translate(-50%, -50%) scale(1.2); 
+   /* Păstrează dimensiunile mari și z-index-ul */
+    width: 450px; 
+    height: 550px; 
+    z-index: 100; 
+    /*box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);*/
+    
+    /* Foarte important: adăugăm tranziția pe transform pentru a elimina orice sacadare */
+    transition: transform 0.4s ease-out, box-shadow 0s, width 0.4s, height 0.4s;
+
+    /* FIX DEFINITIV 1: Forțează GPU-ul pentru o redare statică */
+    will-change: transform;
+    /* FIX DEFINITIV 2: Oferă o referință 3D mai stabilă */
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); 
+    z-index: 99;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Stiluri pentru a face cardul expanded mult mai lizibil */
+.box.is-expanded .card-front,
+.box.is-expanded .card-back {
+    background:var(--main-bg);
+}
+
+
+
+/* Adaugă aceste stiluri în style.css */
+
+.search-container {
+    display: flex;
+    justify-content: center; /* Centrează input-ul */
+    margin-bottom: 40px;
+    padding: 0 20px;
+    padding-bottom: 7%;
+}
+
+#searchInput {
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px 0 0 8px; /* Colț rotunjit doar la stânga */
+    width: 300px;
+    max-width: 80%;
+    outline: none;
+    background: var(--secondary-bg);
+    color: var(--text-color);
+}
+
+.search-container button {
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border: 2px solid var(--primary-color);
+    border-radius: 0 8px 8px 0; /* Colț rotunjit doar la dreapta */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: #7d2a1a; /* O nuanță mai închisă de roșu */
+}
+
+/* Stil pentru ascunderea cardurilor (în JS vom adăuga această clasă) */
+.product-grid .box.hidden {
+    display: none;
+}
+
+
+
+/* -------------------------------------------------------------------------------- */
+/* --- STILURI TABEL NUTRIȚIONAL (nutrition.html) ----------------------------------- */
+/* -------------------------------------------------------------------------------- */
+
+.nutrition-cta {
+    text-align: center;
+    margin: 60px auto 40px auto;
+}
+
+.nutrition-cta .cta-button {
+    /* Folosim stilul de la butonul Adaugă în coș pentru consistență */
+    margin-top: auto; 
+    display: inline-block;
+    padding: .9rem 4rem;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    border: 2px solid var(--light-text);
+    color: var(--light-text);
+    cursor: pointer;
+    background: var(--primary-color);
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+}
+
+
+
+.nutrition-cta .cta-button:hover {
+  background: none;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);  
+}
+
+
+.nutrition-info {
+    padding-top: 150px;
+    padding-bottom: 50px;
+    background: var(--main-bg);
+    min-height: 100vh;
+    text-align: center;
+}
+
+.nutrition-info .heading {
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+
+.table-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto; /* Permite scroll orizontal pe ecranele mici */
+}
+
+.nutrition-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    background: var(--secondary-bg);
+    border-radius: 10px;
+    overflow: hidden; /* Pentru a aplica border-radius */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    min-width: 700px; /* Asigură că tabelul nu se micșorează prea mult */
+}
+
+.nutrition-table th, .nutrition-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid rgba(160, 56, 34, 0.2); /* Margine subțire semi-transparentă */
+    color: var(--text-color);
+}
+
+.nutrition-table thead th {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap; /* Previne ruperea textului din antet */
+}
+
+.nutrition-table tbody tr:nth-child(even) {
+    /* O mică diferență de culoare pentru rândurile pare (alternating rows) */
+    background-color: rgba(160, 56, 34, 0.05); 
+}
+
+.nutrition-table tbody tr:hover {
+    background-color: rgba(160, 56, 34, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .nutrition-info {
+        padding-top: 180px; /* Spațiu sub navbar extins pe mobil */
+        padding: 180px 10px 50px 10px;
+    }
+    
+    .back-button {
+        top: 140px; 
+    }
+}
+
+
+/* -------------------------------------------------------------------------------- */
+/* --- STILURI BUTON DE HELP (Iconiță) --------------------------------------------- */
+/* -------------------------------------------------------------------------------- */
+
+.help-button {
+    position: fixed; /* Fixează butonul în viewport */
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: var(--light-text);
+    font-size: 24px;
+    line-height: 50px; 
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    transition: background 0.3s, transform 0.3s;
+    font-weight: bold;
+}
+
+.help-button:hover {
+    background: #7d2a1a;
+    transform: scale(1.05);
+}
+
+/* Stiluri pentru Fereastra Pop-up */
+.help-popup {
+    position: fixed;
+    bottom: 80px; /* Deasupra butonului */
+    right: 20px;
+    width: 300px;
+    background: var(--secondary-bg);
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    
+    /* Ascunde inițial */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.3s, transform 0.3s, visibility 0s 0.3s;
+    
+    text-align: left;
+}
+
+.help-popup.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.3s, transform 0.3s, visibility 0s;
+}
+
+.help-popup h3 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
+    margin-top: 0;
+    font-size: 1.3rem;
+}
+
+.help-popup ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.help-popup ul li {
+    margin-bottom: 8px;
+    line-height: 1.4;
+    font-size: 0.95rem;
+}
+
+.close-popup {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.close-popup:hover {
+    color: var(--primary-color);
+}
+
+/* Responsive pe mobil */
+@media (max-width: 500px) {
+    .help-popup {
+        bottom: 70px;
+        right: 10px;
+        left: 10px;
+        width: auto; /* Ocupă lățimea maximă pe mobil */
+    }
+}
+
+
+
+
+/* -------------------------------------------------------------------------------- */
+/* --- STILURI COȘ DE CUMPĂRĂTURI (cos.html) --------------------------------------- */
+/* -------------------------------------------------------------------------------- */
+
+.cart-section {
+    padding-top: 150px;
+    padding-bottom: 50px;
+    background: var(--main-bg);
+    min-height: 100vh;
+    text-align: center;
+}
+
+.cart-section .heading {
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.cart-items-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: left;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    background: var(--secondary-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+    color: var(--text-color);
+}
+
+.cart-item:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.item-name {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.item-details {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.1rem;
+}
+
+.item-quantity button {
+    background: var(--primary-color);
+    color: var(--light-text);
+    border: none;
+    border-radius: 4px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.item-price {
+    min-width: 80px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.remove-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.remove-btn:hover {
+    background: #c0392b;
+}
+
+.cart-summary {
+    max-width: 800px;
+    margin: 30px auto 20px auto;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.cart-summary h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    border-top: 2px solid var(--primary-color);
+    padding-top: 15px;
+    display: inline-block;
+}
+
+.checkout-container {
+    margin-top: 30px;
+}
+
+.checkout-container .cta-button{
+    /* Folosim stilul de la butonul Adaugă în coș pentru consistență */
+    margin-top: auto; 
+    display: inline-block;
+    padding: .9rem 4rem;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    border: 2px solid var(--light-text);
+    color: var(--light-text);
+    cursor: pointer;
+    background: var(--primary-color);
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+}
+
+.checkout-container .cta-button:hover{
+    background: none;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);  
+}
+
+/* Folosim stilul CTA existent pentru butonul de finalizare, dar îl mărim 
+.checkout-container .cta-button {
+    padding: 1rem 6rem;
+    font-size: 1.7rem;
+    text-decoration: none;
+    cursor: pointer;
+}*/
+
+/* Stil pentru mesajul de confirmare */
+.confirmation-message {
+    margin-top: 30px;
+    font-size: 1.3rem;
+    color: #2ecc71; /* Verde deschis */
+    font-weight: bold;
+    display: none; /* Ascuns inițial */
+}
+
+/* Mesaj pentru coșul gol */
+.empty-cart-message {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 50px 0;
+    color: var(--text-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .item-details {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .item-price {
+        text-align: left;
+    }
+    .remove-btn {
+        margin-left: auto;
+    }
+    .checkout-container .cta-button {
+        padding: 1rem 3rem;
+        font-size: 1.5rem;
+    }
+}
+
+
+/* -------------------------------------------------------------------------------- */
+/* --- STILURI MODAL COMANDĂ (cos.html) ------------------------------------------- */
+/* -------------------------------------------------------------------------------- */
+
+/* Modal (Fundal întunecat) */
+.modal {
+    display: none; /* Ascuns inițial */
+    position: fixed; 
+    z-index: 200; /* Peste tot conținutul */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.6); /* Fundal semi-transparent negru */
+}
+
+/* Conținutul modalului */
+.modal-content {
+    background-color: var(--secondary-bg);
+    margin: 15% auto; /* 15% de sus și centrat orizontal */
+    padding: 30px;
+    border: 1px solid var(--primary-color);
+    width: 90%; 
+    max-width: 500px; /* Lățime maximă pentru desktop */
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Butonul de închidere */
+.close-button {
+    color: var(--text-color);
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--primary-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Stiluri pentru formular în modal */
+.modal-content .heading {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Asigură că padding-ul nu depășește lățimea */
+    background: var(--main-bg);
+    color: var(--text-color);
+}
+
+.input-group small {
+    display: block;
+    margin-top: 5px;
+    color: gray;
+    font-size: 0.8rem;
+}
+
+.send-button {
+    width: 100%;
+    margin-top: 10px;
+    /* Folosim stilul CTA existent */
+}
+
+/* Responsive pe mobil: modalul acoperă mai mult din ecran */
+@media (max-width: 600px) {
+    .modal-content {
+        margin: 5% auto; /* Mai sus pe mobil */
+        padding: 20px;
+    }
+}
+
+
+
+/* -------------------------------------------------------------------------------- */
+/* --- Ajustări responsive pentru flip card ---------------------------------------- */
+/* -------------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    /* Reducem mărimea expansiunii pe mobil */
+    .box.is-expanded {
+        width: 80vw; /* Lățime 80% din viewport */
+        height: 70vh; /* Înălțime 70% din viewport */
+        transform: translate(-50%, -50%) scale(1); /* Nu mai mărim cu scale pe mobil */
+    }
+}
+
+/* ... restul codului CSS, inclusiv media queries ... */
+
+@media (max-width: 768px) {
+    
+    .product-grid {
+        grid-template-columns: 1fr; 
+    }
+    .heading {
+        font-size: 2.5rem;
+        padding-top: 130px; 
+    }
+    
+}
+
+
+
+
+
+
+
+
+@media (max-width: 900px) {
+    /* Ajustări pentru Tablete și Mobile */
+    
+    /* Schimbarea layout-ului pe About la o singură coloană */
+    .story-block,
+    .reverse-layout {
+        flex-direction: column;
+    }
+
+    .story-image-wrapper {
+        min-width: 100%; /* Imaginea ocupă lățimea maximă */
+        height: 250px;
+        order: -1; /* Mută imaginea deasupra textului pe mobil */
+    }
+
+    .story-text {
+        flex: none;
+    }
+
+    .about-title {
+        font-size: 2.2em;
+        margin-bottom: 40px;
+    }
+    
+    .cta-block h2 {
+        font-size: 1.8em;
+    }
+
+    /* Video Hero ajustări pe tabletă */
+    .video-hero {
+        padding-top: 120px; /* FIX: Compensație sporită pentru header-ul fix */
+        padding-bottom: 60%; /* Trecem la un raport mai înalt pe mobil (ex: 4:3) */
+    }
+
+    .video-overlay p {
+        font-size: 2.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Ajustări pentru Telefoane Mobile */
+    
+    header {
+        /* Păstrăm header-ul fix, dar îl facem să se extindă pe verticală */
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+        position: fixed; /* Rămâne FIXED */
+    }
+
+    .logo {
+        height: 80px;
+    }
+
+    nav {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav a {
+        margin: 5px 0;
+        width: 80%;
+        text-align: center;
+    }
+
+    #modeToggle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        margin: 0;
+    }
+
+    /* Contact mobile */
+    .contact {
+        flex-direction: column;
+        padding: 50px 5% 50px 5%;
+        /* Adăugăm padding-top și aici, în cazul în care pagina de contact va fi următoarea */
+        padding-top: 150px; 
+    }
+
+    .contact .linie,
+    .contactForm {
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+    }
+    
+    /* Hero mobile (pentru referință) */
+    .hero {
+        flex-direction: column;
+        padding-top: 20px; 
+        min-height: auto;
+    }
+    .right-container {
+        padding-left: 20px;
+        order: 2; 
+        text-align: center;
+        align-items: center;
+    }
+    .right {
+        font-size: 10vw;
+        margin-top: 20px;
+        text-align: center;
+        white-space: normal;
+    }
+    .right-down {
+        font-size: 4vw;
+        max-width: 90%;
+        text-align: center;
+    }
+    .left {
+        order: 1; 
+        height: 50vh;
+        width: 100%;
+    }
+    .smoothieImg {
+        position: static; 
+        transform: none;
+        width: 80%;
+        margin-bottom: 20px;
+        top: auto;
+        right: auto;
+    }
+    .smoothieImg:hover {
+        transform: scale(1.05); 
+    }
+    
+    /* Video Hero ajustări pe mobil */
+    .video-hero {
+        padding-top: 140px; /* FIX: Ne asigurăm că videoul este sub navbar-ul extins, care acum e fix */
+        padding-bottom: 75%; /* 4:3 aspect ratio pe telefoane */
+    }
+
+    .video-overlay p {
+        font-size: 1.8em;
+    }
+}
+
+/* -------------------------------------------------------------------------------- */
+/* --- RESPONSIVENESS MEDIA QUERIES ----------------------------------------------- */
+/* -------------------------------------------------------------------------------- */
+
+/* --- Ajustări pentru Tablete (max-width: 900px) --- */
+@media (max-width: 900px) {
+    
+    /* NAV & HEADER */
+    header {
+        padding: 15px 15px;
+    }
+    nav a {
+        margin: 0 20px;
+    }
+    
+    /* HOME (EROUL) */
+    .hero {
+        flex-direction: column;
+        padding: 20px;
+        padding-top: 150px; /* Spațiu sub header */
+    }
+
+    .right-container {
+        order: 2; 
+        text-align: center;
+        align-items: center;
+        left: 0;
+        top: 0;
+        margin-top: 20px;
+    }
+
+    .right {
+        font-size: 8vw;
+        margin-top: 0;
+        white-space: normal;
+    }
+
+    .right-down {
+        font-size: 3vw;
+        max-width: 80%;
+    }
+
+    .left {
+        order: 1; 
+        height: 40vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .left .smoothie-container .smoothieImg {
+        position: relative; 
+        right: auto;
+        top: auto;
+        width: 70%;
+        height: auto;
+    }
+
+    /* DESPRE */
+    .story-block,
+    .reverse-layout {
+        flex-direction: column;
+        padding: 30px;
+    }
+
+    .story-image-wrapper {
+        min-width: 100%;
+        height: 250px;
+        order: -1; 
+        margin-bottom: 20px;
+    }
+
+    .about-title {
+        font-size: 2.2em;
+    }
+    
+    /* MENIU */
+    .product-grid {
+        /* Trecem de la 3 la 2 coloane pe tabletă pentru a da mai mult spațiu */
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        padding: 0 20px;
+    }
+    
+    .box.is-expanded {
+        /* Ajustăm mărimea modalului pentru a se încadra mai bine */
+        width: 80vw;
+        height: 90vh;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+
+/* --- Ajustări pentru Telefoane (max-width: 600px) --- */
+@media (max-width: 600px) {
+    
+    /* NAV & HEADER (Trecere la Stacked Layout) */
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+        height: auto;
+    }
+
+    .logo {
+        height: 60px;
+    }
+
+    nav {
+        margin-top: 5px;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav a {
+        margin: 5px 0;
+        width: 100%;
+        text-align: center;
+        border-bottom: none; /* Eliminăm sublinierea butoanelor neactive */
+        padding: 5px 0;
+    }
+    
+    nav a.active {
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 2px;
+    }
+
+    #modeToggle {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+    
+    /* CONTACT */
+    .contact {
+        flex-direction: column;
+        padding-top: 220px; /* Spațiu sub navbar-ul extins */
+    }
+
+    .contact .linie,
+    .contactForm {
+        width: 90%;
+        margin: 20px auto;
+        padding: 15px;
+    }
+    
+    .contact .linie {
+        margin-top: 20px;
+    }
+    
+    /* MENIU - GRID */
+    .products {
+        padding-top: 220px; /* Spațiu sub navbar-ul extins */
+    }
+    
+    .product-grid {
+        /* Trecem la 1 coloană pe telefon */
+        grid-template-columns: 1fr; 
+        gap: 30px;
+    }
+    
+    .heading {
+        font-size: 2.5rem;
+    }
+    
+    /* MENIU - CĂUTARE */
+    .search-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #searchInput {
+        width: 100%;
+        max-width: 90%;
+        border-radius: 8px; /* Îi dăm colțuri rotunjite complete */
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    
+    .search-container button {
+        width: 90%;
+        border-radius: 8px;
+    }
+    
+    /* COȘ - CART */
+    .cart-section {
+        padding-top: 220px;
+    }
+    
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .item-details {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 5px;
+    }
+    
+    .item-price {
+        margin-left: auto; /* Împinge prețul final în dreapta */
+    }
+    
+    .cart-summary {
+        text-align: center;
+        padding-right: 0;
+    }
+    
+    .checkout-container .cta-button {
+        padding: 1rem 3rem;
+        font-size: 1.5rem;
+    }
+    
+    /* TABEL NUTRIȚIONAL */
+    .nutrition-info {
+        padding-top: 220px;
+        padding: 220px 10px 50px 10px;
+    }
+
+    /* Butonul înapoi nu mai este absolut poziționat, ci în flux */
+    .back-button {
+        position: static;
+        display: block;
+        margin: 0 auto 20px auto;
+        text-align: center;
+        width: 90%;
+    }
+
+    .table-container {
+        /* Scroll orizontal va fi activ pe mobil */
+        padding: 0;
+    }
+
+    /* MODAL COMANDĂ */
+    .modal-content {
+        margin: 5% auto; 
+        padding: 20px;
+    }
+}
+

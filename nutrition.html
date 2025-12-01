@@ -1,0 +1,185 @@
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Informații Nutriționale - Mr. Smoothie</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <header class="navbar">
+        <a href="home.html">
+            <img src="logo_smoothie.png" class="logo">
+        </a>
+        <nav>
+            <a href="home.html">Acasă</a>
+            <a href="about.html">Despre</a>
+            <a href="menu.html">Meniu</a>
+            <a href="cart.html">Coș</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button id="modeToggle">🌙</button>
+    </header>
+
+    <section class="nutrition-info">
+        
+        <h1 class="heading">Valori Nutriționale</h1>
+        
+        <div class="table-container">
+            <table class="nutrition-table">
+                <thead>
+                    <tr>
+                        <th>Sortiment (250ml)</th>
+                        <th>Valoare Energetică (kcal)</th>
+                        <th>Grăsimi (g)</th>
+                        <th>Carbohidrați (g)</th>
+                        <th>Glucide (g)</th>
+                        <th>Fibre (g)</th>
+                        <th>Proteine (g)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mango</td>
+                        <td>313</td>
+                        <td>11.24</td>
+                        <td>34.58</td>
+                        <td>10.22</td>
+                        <td>5.85</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td>Căpșuni</td>
+                        <td>285</td>
+                        <td>10.94</td>
+                        <td>28.20</td>
+                        <td>9.77</td>
+                        <td>6.34</td>
+                        <td>8.99</td>
+                    </tr>
+                    <tr>
+                        <td>Unt de Arahide</td>
+                        <td>419</td>
+                        <td>20.37</td>
+                        <td>35.04</td>
+                        <td>11.9</td>
+                        <td>7.18</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>Cacao</td>
+                        <td>394</td>
+                        <td>17.78</td>
+                        <td>37</td>
+                        <td>11.3</td>
+                        <td>8.1</td>
+                        <td>13.02</td>
+                    </tr>
+                    <tr>
+                        <td>Spirulină</td>
+                        <td>311</td>
+                        <td>11.37</td>
+                        <td>33.8</td>
+                        <td>10.22</td>
+                        <td>6.3</td>
+                        <td>9.54</td>
+                    </tr>
+                    <tr>
+                        <td>Kiwi</td>
+                        <td>305</td>
+                        <td>11.27</td>
+                        <td>33.32</td>
+                        <td>9.82</td>
+                        <td>6.51</td>
+                        <td>8.89</td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="help-container">
+        <button id="helpBtn" class="help-button" aria-label="Ajutor Informații Nutriționale">
+            ?
+        </button>
+
+        <div id="helpPopup" class="help-popup">
+            <span class="close-popup" onclick="closeHelp()">&times;</span>
+            <h3>Ce sunt valorile nutriționale?</h3>
+            <p>
+                Aceste valori reprezintă conținutul nutritiv mediu al unui smoothie (per 250ml) și te ajută să înțelegi ce consumi.
+            </p>
+            <ul>
+                <li>Valoare Energetică (kcal): Cantitatea totală de energie (calorii).</li>
+                <li>Grăsimi: Totalul de lipide.</li>
+                <li>Carbohidrați: Sursa principală de energie, inclusiv zaharuri și fibre.</li>
+                <li>Glucide (Zaharuri): Zaharurile naturale din fructe.</li>
+                <li>Fibre: Carbohidrați nedigerabili, esențiali pentru digestie.</li>
+                <li>Proteine: Esențiale pentru dezvoltarea și repararea mușchilor.</li>
+            </ul>
+        </div>
+    </div>
+    </section>
+
+    <script>
+        const modeToggle = document.getElementById('modeToggle');
+
+        // verificăm dacă există modul salvat
+        if(localStorage.getItem('mode')) {
+            document.body.className = localStorage.getItem('mode');
+            modeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+
+        modeToggle.addEventListener('click', () => {
+            if(document.body.classList.contains('dark-mode')) {
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+                localStorage.setItem('mode', 'light-mode');
+                modeToggle.textContent = '🌙';
+            } else {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('mode', 'dark-mode');
+                modeToggle.textContent = '☀️';
+            }
+        });
+    </script>
+    <script>
+        // Cod pentru evidențierea linkului activ (se va activa pe 'Meniu' deoarece se navighează de acolo)
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('header nav a');
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === 'menu.html') {
+                    link.classList.add('active');
+                } 
+            });
+        });
+    </script>
+
+    <script>
+        // Funcția de afișare/ascundere a pop-up-ului
+        function toggleHelp() {
+            const popup = document.getElementById('helpPopup');
+            popup.classList.toggle('visible');
+        }
+
+        function closeHelp() {
+             document.getElementById('helpPopup').classList.remove('visible');
+        }
+        
+        // Adăugăm evenimentul de click pe buton
+        document.getElementById('helpBtn').addEventListener('click', toggleHelp);
+        
+        // Închide pop-up-ul la click în afara lui
+        window.addEventListener('click', (event) => {
+            const popup = document.getElementById('helpPopup');
+            const button = document.getElementById('helpBtn');
+            if (!popup.contains(event.target) && event.target !== button) {
+                closeHelp();
+            }
+        });
+    </script>
+
+</body>
+</html>

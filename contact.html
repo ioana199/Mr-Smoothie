@@ -1,0 +1,171 @@
+<html lang="ro">
+    <head>
+     <meta charset="UTF-8">
+    <title>Mr. Smoothie</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    
+      <header class="navbar">
+        <a href="home.html">
+            <img src="logo_smoothie.png" class="logo">
+        </a>
+        <nav>
+            <a href="home.html">Acasă</a>
+            <a href="about.html">Despre</a>
+            <a href="menu.html">Meniu</a>
+            <a href="cart.html">Coș</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button id="modeToggle">🌙</button>
+      </header>
+
+       <script>
+        const modeToggle = document.getElementById('modeToggle');
+
+        // verificăm dacă există modul salvat
+        if(localStorage.getItem('mode')) {
+            document.body.className = localStorage.getItem('mode');
+            modeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+
+        modeToggle.addEventListener('click', () => {
+            if(document.body.classList.contains('dark-mode')) {
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+                localStorage.setItem('mode', 'light-mode');
+                modeToggle.textContent = '🌙';
+            } else {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('mode', 'dark-mode');
+                modeToggle.textContent = '☀️';
+            }
+        });
+    </script>
+      
+
+    <section class="contact">
+        <div class="linie">
+            <div class="contact_box">
+                <div class="icon">
+                    <img src="icon_locatie.png" class="icon">
+                </div>
+                <div class="text">
+                    <h3>Locație</h3><br>
+                    <p>Sâmbăteni Nr.395</p>
+                </div>      
+            </div>
+            <div class="contact_box">
+                <div class="icon">
+                    <img src="icon_mail.png" class="icon">
+                </div>
+                <div class="text">
+                    <h3>E-mail</h3><br>
+                    <p>mrsmoothie@yahoo.com</p>
+                </div>      
+            </div>
+            <div class="contact_box">
+                <div class="icon">
+                    <img src="icon_telefon.png" class="icon">
+                </div>
+                <div class="text">
+                    <h3>Telefon</h3><br>
+                    <p>+40754057556</p>
+                </div>      
+            </div>
+
+             <div class="socials">
+             <!-- Facebook -->
+                <a href="https://www.facebook.com/profile.php?id=61573528268735&locale=ro_RO" target="_blank">
+                    <img src="icon_facebook.png" class="social">
+                </a>
+                
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/mr.smoothie.ar/" target="_blank">
+                    <img src="icon_instagram.png" class="social">
+                </a>
+
+                <!-- TikTok (folosim iconița 'fa-tiktok') -->
+                <a href="https://www.tiktok.com/@mr.smoothie96" target="_blank">
+                    <img src="icon_tiktok.png" class="social">
+                </a>
+                
+                <!-- WhatsApp (folosim iconița 'fa-whatsapp') -->
+                <a href="https://wa.me/40754057556" target="_blank">
+                    <img src="icon_whatsapp.png" class="social">
+                </a>
+            </div>
+        </div>
+
+        <div class="contactForm">
+            <form>
+                <h2>Trimite mesaj</h2>
+                <div class="inputbox">
+                    <input type="text" id="name" name="" required="required">
+                    <span>Nume și prenume</span>
+                </div>
+                <div class="inputbox">
+                    <input type="text" id="email" name="" required="required">
+                    <span>E-mail</span>
+                </div>
+                <div class="inputbox">
+                    <textarea id="message" required="required"></textarea>
+                    <span>Scrie mesajul tău...</span>
+                </div>
+                <div class="inputbox">
+                    <input type="submit" name="" onclick="sendEmail()" value="Trimite">
+                    
+                </div>
+            </form>
+        </div>
+    </section>
+    <!--
+    <section class="map">
+        <div class="googlemaps">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11058.39041357081!2d21.51902898894401!3d46.1388449089186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4745850162f00001%3A0x665ea6b796aaf352!2sBiserica%20Penticostal%C4%83%20Tabor!5e0!3m2!1sro!2sro!4v1742422908750!5m2!1sro!2sro" width="100%" height="90%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+    -->
+    <script>
+        function sendEmail() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let message = document.getElementById("message").value;
+            
+            let subject = "Mesaj de la " + name;
+            let body = "Nume: " + name + "%0AEmail: " + email + "%0A%0AMesaj:%0A" + message;
+
+            // Deschide clientul de email
+            window.location.href = "mailto:ioanaardelean199@gmail.com?subject=" + subject + "&body=" + body;
+        }
+    </script>
+
+    <script>
+// Cod pentru evidențierea linkului activ
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('header nav a');
+    const currentPath = window.location.pathname.split('/').pop(); // Extrage numele fișierului
+
+    navLinks.forEach(link => {
+        // Obține numele fișierului din href (ex: 'home.html')
+        const linkPath = link.getAttribute('href'); 
+        
+        // Verificăm dacă linkPath este gol ('') - cazul linkului Coș, pe care l-ai lăsat gol. 
+        // Dacă este 'home.html' și currentPath este gol (index.html sau home.html dacă este setat ca pagină principală), 
+        // sau dacă linkPath se potrivește cu currentPath, adăugăm clasa 'active'.
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        } else if (currentPath === "" && linkPath === "home.html") {
+            // Caz special: dacă pagina curentă este rădăcina, activează linkul 'Acasă'
+            link.classList.add('active');
+        }
+    });
+});
+    </script>
+</body>
+</html>

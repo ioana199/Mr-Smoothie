@@ -1,0 +1,314 @@
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Mr. Smoothie</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <a href="home.html">
+            <img src="logo_smoothie.png" class="logo">
+        </a>
+        <nav>
+            <a href="home.html">Acasă</a>
+            <a href="about.html">Despre</a>
+            <a href="menu.html">Meniu</a>
+            <a href="cart.html">Coș</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button id="modeToggle">🌙</button>
+
+    </header>
+
+    <section class="cart-section">
+        <h1 class="heading">Coșul Meu</h1>
+
+        <div id="cartItemsContainer" class="cart-items-container">
+            </div>
+
+        <div class="cart-summary">
+            <h2 id="cartTotal">Total: 0.00 lei</h2>
+        </div>
+        
+        <div class="checkout-container">
+            <button id="checkoutBtn" class="cta-button" onclick="openModal()">Finalizează Comanda</button>
+        </div>
+        
+        <p id="confirmationMessage" class="confirmation-message">
+            Comanda dumneavoastră a fost trimisă, plata se va efectua la venirea comenzii!
+        </p>
+
+    </section>
+
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2 class="heading">Detalii Livrare</h2>
+            <form id="deliveryForm">
+                <div class="input-group">
+                    <label for="clientName">Nume și Prenume*</label>
+                    <input type="text" id="clientName" required>
+                </div>
+                <div class="input-group">
+                    <label for="clientAddress">Adresa completă*</label>
+                    <input type="text" id="clientAddress" required>
+                </div>
+                <div class="input-group">
+                    <label for="clientPhone">Număr de telefon*</label>
+                    <input type="tel" id="clientPhone" required pattern="[0-9]{10}">
+                    <small>Format: 10 cifre (ex: 07xxxxxxxx)</small>
+                </div>
+                <button type="submit" class="cta-button send-button">Trimite Comanda pe WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="help-container">
+        <button id="cartHelpBtn" class="help-button" aria-label="Ajutor Coș de Cumpărături">
+            ?
+        </button>
+
+        <div id="cartHelpPopup" class="help-popup">
+            <span class="close-popup" onclick="closeCartHelp()">&times;</span>
+            <h3>Cum plasezi comanda:</h3>
+            <ul>
+                <li>1. Selectați smoothie-urile dorite din pagina <a href="menu.html">Meniu</a>.</li>
+                <li>2. În Coș, puteți ajusta numărul de bucăți (folosind butoanele +/-).</li>
+                <li>3. La apăsarea butonului "Finalizează Comanda", se va deschide formularul de livrare.</li>
+                <li>4. După completarea datelor, comanda va fi trimisă către Mr. Smoothie.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const modeToggle = document.getElementById('modeToggle');
+
+        // verificăm dacă există modul salvat
+        if(localStorage.getItem('mode')) {
+            document.body.className = localStorage.getItem('mode');
+            modeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+
+        modeToggle.addEventListener('click', () => {
+            if(document.body.classList.contains('dark-mode')) {
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+                localStorage.setItem('mode', 'light-mode');
+                modeToggle.textContent = '🌙';
+            } else {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('mode', 'dark-mode');
+                modeToggle.textContent = '☀️';
+            }
+        });
+    </script>
+
+    <script>
+    // Cod pentru evidențierea linkului activ
+    document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('header nav a');
+    const currentPath = window.location.pathname.split('/').pop(); // Extrage numele fișierului
+
+    navLinks.forEach(link => {
+        // Obține numele fișierului din href (ex: 'home.html')
+        const linkPath = link.getAttribute('href'); 
+        
+        // Verificăm dacă linkPath este gol ('') - cazul linkului Coș, pe care l-ai lăsat gol. 
+        // Dacă este 'home.html' și currentPath este gol (index.html sau home.html dacă este setat ca pagină principală), 
+        // sau dacă linkPath se potrivește cu currentPath, adăugăm clasa 'active'.
+        if (linkPath === currentPath) {
+            link.classList.add('active');
+        } else if (currentPath === "" && linkPath === "home.html") {
+            // Caz special: dacă pagina curentă este rădăcina, activează linkul 'Acasă'
+            link.classList.add('active');
+        }
+        });
+    });
+    </script>
+
+    <script>
+let cartItems = [];
+let total = 0; // Variabila totală globală
+
+const modal = document.getElementById('checkoutModal');
+const form = document.getElementById('deliveryForm');
+
+// --- Funcții de bază pentru Coș (Rendere și Manipulare) ---
+
+function renderCart() {
+    const container = document.getElementById('cartItemsContainer');
+    const totalElement = document.getElementById('cartTotal');
+    total = 0; // Resetăm totalul
+    container.innerHTML = ''; // Golește containerul
+
+    cartItems = JSON.parse(localStorage.getItem('smoothieCart')) || [];
+
+    if (cartItems.length === 0) {
+        // Asigură-te că aceste ID-uri/clase există în HTML-ul tău complet
+        if (container) {
+             container.innerHTML = '<p class="empty-cart-message">Coșul este gol!</p>';
+        }
+        if (totalElement) {
+             totalElement.textContent = 'Total: 0.00 lei';
+        }
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        if (checkoutBtn) {
+            checkoutBtn.disabled = true;
+        }
+        return;
+    }
+    
+    document.getElementById('checkoutBtn').disabled = false;
+
+    cartItems.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `
+            <div class="item-name">${item.name}</div>
+            <div class="item-details">
+                <div class="item-quantity">
+                     <button onclick="changeQuantity(${index}, -1)">-</button>
+                     <span>${item.quantity}</span> x ${item.price} lei
+                     <button onclick="changeQuantity(${index}, 1)">+</button>
+                </div>
+                <div class="item-price">${itemTotal.toFixed(2)} lei</div>
+                <button class="remove-btn" onclick="removeItem(${index})">X</button>
+            </div>
+        `;
+        container.appendChild(itemDiv);
+    });
+
+    totalElement.textContent = `Total: ${total.toFixed(2)} lei`;
+}
+
+function updateLocalStorage() {
+    localStorage.setItem('smoothieCart', JSON.stringify(cartItems));
+    renderCart();
+}
+
+function changeQuantity(index, delta) {
+    cartItems[index].quantity += delta;
+    if (cartItems[index].quantity <= 0) {
+        removeItem(index);
+        return;
+    }
+    updateLocalStorage();
+}
+
+function removeItem(index) {
+    cartItems.splice(index, 1);
+    updateLocalStorage();
+}
+
+
+// --- Funcții Modal și Finalizare Comandă ---
+
+function openModal() {
+    if (cartItems.length === 0) {
+         alert("Coșul este gol. Adaugă produse înainte de a finaliza comanda!");
+         return;
+    }
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+}
+
+function finalizeOrder() {
+    const clientName = document.getElementById('clientName').value;
+    const clientAddress = document.getElementById('clientAddress').value;
+    const clientPhone = document.getElementById('clientPhone').value;
+    
+    // Formatăm mesajul comenzii
+    const totalText = document.getElementById('cartTotal').textContent.replace('Total: ', '');
+    let message = "COMANDA MR. SMOOTHIE:\n";
+
+    cartItems.forEach(item => {
+        message += `${item.quantity} x ${item.name} (${item.price} lei/buc)\n`;
+    });
+
+    message += `\n--- DETALII LIVRARE ---\n`;
+    message += `Nume: ${clientName}\n`;
+    message += `Adresă: ${clientAddress}\n`;
+    message += `Telefon: ${clientPhone}\n`;
+    message += `\nCOST TOTAL: ${totalText}`;
+    message += "\n\nPlata se face la livrare.";
+    
+    // Codificăm mesajul pentru URL
+    const encodedMessage = encodeURIComponent(message);
+    const phoneNumber = '+40754057556';
+    
+    // Deschide WhatsApp
+    const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    
+    window.open(whatsappLink, '_blank');
+    
+    // Închide modalul
+    closeModal();
+    
+    // Afișează mesajul de confirmare (Asigură-te că acest ID există în HTML-ul tău complet)
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    if (confirmationMessage) {
+        confirmationMessage.style.display = 'block';
+    }
+    
+    // Golește coșul și re-randare
+    localStorage.removeItem('smoothieCart');
+    setTimeout(() => {
+        renderCart();
+    }, 1000); 
+}
+
+// --- Event Listeners și Inițializare ---
+
+// Funcția declanșată la trimiterea formularului
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    finalizeOrder();
+});
+
+// Închide modalul la click în afara lui
+window.onclick = function(event) {
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+// Inițializează coșul la încărcarea paginii
+window.onload = renderCart;
+    </script>
+
+    <script>
+        function toggleCartHelp() {
+            const popup = document.getElementById('cartHelpPopup');
+            popup.classList.toggle('visible');
+        }
+
+        function closeCartHelp() {
+             document.getElementById('cartHelpPopup').classList.remove('visible');
+        }
+        
+        // Adăugăm evenimentul de click pe butonul de ajutor
+        document.getElementById('cartHelpBtn').addEventListener('click', toggleCartHelp);
+        
+        // Închide pop-up-ul la click în afara lui
+        window.addEventListener('click', (event) => {
+            const popup = document.getElementById('cartHelpPopup');
+            const button = document.getElementById('cartHelpBtn');
+            if (!popup.contains(event.target) && event.target !== button && popup.classList.contains('visible')) {
+                closeCartHelp();
+            }
+        });
+    </script>
+</body>
+</html>
