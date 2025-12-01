@@ -1596,7 +1596,8 @@ body.modal-open .product-grid .box:not(.is-expanded) {
         padding: 15px 15px;
     }
     nav a {
-        margin: 0 20px;
+        margin: 0 10px;
+        font-size: 0.9rem;
     }
     
     /* HOME (EROUL) */
@@ -1604,6 +1605,7 @@ body.modal-open .product-grid .box:not(.is-expanded) {
         flex-direction: column;
         padding: 20px;
         padding-top: 150px; /* Spațiu sub header */
+        min-height: auto;
     }
 
     .right-container {
@@ -1613,17 +1615,20 @@ body.modal-open .product-grid .box:not(.is-expanded) {
         left: 0;
         top: 0;
         margin-top: 20px;
+        position: static;
     }
 
     .right {
-        font-size: 8vw;
+        font-size: 15vw;
         margin-top: 0;
         white-space: normal;
     }
 
     .right-down {
-        font-size: 3vw;
-        max-width: 80%;
+        font-size: 4vw;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .left {
@@ -1633,13 +1638,14 @@ body.modal-open .product-grid .box:not(.is-expanded) {
         display: flex;
         justify-content: center;
         align-items: center;
+      
     }
     
     .left .smoothie-container .smoothieImg {
         position: relative; 
         right: auto;
         top: auto;
-        width: 70%;
+        width: 90%;
         height: auto;
     }
 
@@ -1664,9 +1670,10 @@ body.modal-open .product-grid .box:not(.is-expanded) {
     /* MENIU */
     .product-grid {
         /* Trecem de la 3 la 2 coloane pe tabletă pentru a da mai mult spațiu */
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
+        grid-template-columns: 1fr;
+        gap: 30px;
         padding: 0 20px;
+        max-width: 600px;
     }
     
     .box.is-expanded {
@@ -1827,5 +1834,20 @@ body.modal-open .product-grid .box:not(.is-expanded) {
         margin: 5% auto; 
         padding: 20px;
     }
+
+    /* HOME (FIX) */
+    .hero {
+        padding-top: 250px; 
+    }
+    .right {
+        font-size: 18vw; 
+    }
+    .right-down {
+        font-size: 5vw; 
+    }
+    .left .smoothie-container .smoothieImg {
+        width: 95%; 
+    }
 }
+
 
